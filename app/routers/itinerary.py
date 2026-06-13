@@ -17,5 +17,5 @@ def get_itineraries(trip_id: int , db:Session=Depends(get_db)):
 
 @router.post("/itineraries" , response_model=ItineraryResponse)
 def create_itineraries(data:ItineraryCreate , db:Session=Depends(get_db)):
-    return itinerary_service.create_itineraries(data, db)
+    return itinerary_service.create_itineraries(data.trip_id, db)
         
