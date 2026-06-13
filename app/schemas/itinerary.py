@@ -8,7 +8,6 @@ class ItineraryDay(BaseModel):
 
 class ItineraryCreate(BaseModel):
     trip_id : int
-    days : List[ItineraryDay]
 
 class ItineraryResponse(BaseModel):
     trip_id : int
