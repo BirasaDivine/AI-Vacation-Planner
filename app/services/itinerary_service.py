@@ -5,7 +5,7 @@ from app.models.itinerary import Itinerary
 from app.schemas.itinerary import ItineraryCreate , ItineraryDayResponse , ItineraryResponse
 from app.schemas.trip import TripCreate , TripResponse
 from app.models.trip import Trip
-from app.claude import add_user_message , chat
+from app.claude import add_user_message , chat 
 import json
 
 def get_itineraries(trip_id: int , db:Session):
@@ -38,6 +38,15 @@ def prompt(trip_id : int , db:Session):
     messages=[]
     add_user_message(messages , prompt)
     answer=chat(messages)
+    print("Claude response:", answer)
+    answer = answer.strip()
+    if answer.startswith("```json"):
+      answer = answer[7:]  
+    if answer.startswith("```"):
+      answer = answer[3:]  
+    if answer.endswith("```"):
+       answer = answer[:-3]  
+    answer = answer.strip()
     itinerary=json.loads(answer)
     return itinerary
 

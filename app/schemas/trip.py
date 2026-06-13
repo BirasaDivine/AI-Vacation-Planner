@@ -12,4 +12,3 @@ class TripResponse(BaseModel):
     days : int
     budget : int
     trip_style : str
-    message : str
