@@ -20,5 +20,5 @@ def chat(messages):
         max_tokens=1000,
         messages=messages,
     )
-    return message.content[0].text # type: ignore
+    return message.content[0].text
 
